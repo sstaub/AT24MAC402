@@ -47,21 +47,19 @@ void loop() {
 
 ## Constructor
 ```cpp
-AT24MAC402(uint8_t a0 = 0, uint8_t a1 = 0, uint8_t a2 = 0, TwoWire &wire = Wire);
+AT24MAC402(uint8_t a0 = 0, uint8_t a1 = 0, uint8_t a2 = 0);
 ```
 - **a0** set address pin A0 to HIGH or LOW
 - **a1** set address pin A1 to HIGH or LOW
 - **a2** set address pin A2 to HIGH or LOW
-- **wire** set optional Wire class to use (Wire, Wire1, Wire2 ...)
 
-Create an EEPROM object with an optional settings of the address pins A0, A1, A2 and the Wire*N* class.
+Create an EEPROM object with an optional settings of the address pins A0, A1 and A2.
 
 **Example**
 
 ```cpp
 AT24MAC402 at24mac402; // all address pins to GND using Wire
 AT24MAC402 at24mac402(0, 0, 1); // address pin A2 high using Wire
-AT24MAC402 at24mac402(0, 0, 1, Wire1); // address pin A2 high using Wire1
 ```
 
 ## Methods
@@ -69,8 +67,9 @@ AT24MAC402 at24mac402(0, 0, 1, Wire1); // address pin A2 high using Wire1
 ### **begin()**
 
 ```cpp
-void begin();
+void begin(TwoWire &wire = Wire);
 ```
+- **wire** set optional Wire class to use (Wire, Wire1, Wire2 ...)
 
 Initialize the Wire (I2C) communication of the EEPROM.<br>
 This must done in ```setup()```
@@ -80,6 +79,7 @@ This must done in ```setup()```
 ```cpp
 setup() {
   at24mac402.begin();
+  at24mac402.begin(Wire1); // for use with e.g. Wire1
   }
 ```
 

@@ -5,8 +5,7 @@
 #define I2C_ADDRESS 0x50
 #define I2C_ADDRESS_EXTENDED 0x58
 
-AT24MAC402::AT24MAC402(uint8_t a0, uint8_t a1, uint8_t a2, TwoWire &wire) {
-	this->wire = &wire;
+AT24MAC402::AT24MAC402(uint8_t a0, uint8_t a1, uint8_t a2) {
 	i2cAddress = I2C_ADDRESS;
 	bitWrite(i2cAddress, 0, a0);
 	bitWrite(i2cAddress, 1, a1);
@@ -17,8 +16,9 @@ AT24MAC402::AT24MAC402(uint8_t a0, uint8_t a1, uint8_t a2, TwoWire &wire) {
 	bitWrite(i2cAddressExt, 2, a2);
 	}
 
-void AT24MAC402::begin() {
-	wire->begin();
+void AT24MAC402::begin(TwoWire &wire) {
+	this->wire = &wire;
+	this->wire->begin();
 	}
 
 void AT24MAC402::writeByte(uint8_t address, uint8_t data) {

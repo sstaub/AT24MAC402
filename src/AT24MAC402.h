@@ -36,13 +36,13 @@ class AT24MAC402 {
 		 * 
 		 * @param i2cAddressExtMask 
 		 */
-		AT24MAC402(uint8_t a0 = 0, uint8_t a1 = 0, uint8_t a2 = 0, TwoWire &wire = Wire);
+		AT24MAC402(uint8_t a0 = 0, uint8_t a1 = 0, uint8_t a2 = 0);
 
 		/**
 		 * @brief Start the Wire connectopn
 		 * 
 		 */
-		void begin();
+		void begin(TwoWire &wire = Wire);
 
 		/**
 		 * @brief Write a single byte to the EEPROM
